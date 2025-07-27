@@ -11,6 +11,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
@@ -58,10 +62,28 @@
             color: #ffffff;
             text-decoration: none;
             transition: color 0.3s;
+            font-size: 1rem;
         }
 
         .nav-links a:hover {
             color: #00ff88;
+        }
+        
+        /* Hamburger Menu Icon */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1100; /* Ensure it's above other content */
+        }
+
+        .hamburger .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
         }
 
         /* Hero Section */
@@ -73,6 +95,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            padding: 0 20px;
         }
 
         .glow-effect {
@@ -83,6 +106,7 @@
             border-radius: 50%;
             animation: pulse 4s ease-in-out infinite;
             z-index: 1;
+            pointer-events: none;
         }
 
         @keyframes pulse {
@@ -131,11 +155,10 @@
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
         }
-
-        /* Process Section */
-        .process {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+        
+        /* General Section Styling */
+        .section {
+             padding: 100px 0;
         }
 
         .section-title {
@@ -145,14 +168,13 @@
             color: #ffffff;
         }
 
-        .social-links img {
-            object-fit: cover;
-            border-radius: 25%;
+        /* Process Section */
+        .process {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
         }
 
         .process-grid {
             display: grid;
-            /* Updated to fit 4 columns on larger screens */
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             margin-top: 40px;
@@ -160,7 +182,7 @@
 
         .process-card {
             background: rgba(255, 255, 255, 0.05);
-            padding: 20px; /* Adjusted padding */
+            padding: 20px;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: transform 0.3s, background 0.3s;
@@ -170,12 +192,11 @@
             flex-direction: column;
         }
 
-        /* NEW STYLE FOR THE CARD IMAGE */
         .process-card .card-image {
             width: 100%;
             height: 150px;
             object-fit: cover;
-            border-radius: 8px; /* Rounded corners for the image */
+            border-radius: 8px;
             margin-bottom: 20px;
         }
 
@@ -210,12 +231,11 @@
         .process-card p {
             color: #cccccc;
             line-height: 1.6;
-            flex-grow: 1; /* Ensures cards have same height if text length varies */
+            flex-grow: 1; 
         }
         
         /* Services Section */
         .services {
-            padding: 100px 0;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
         }
 
@@ -264,7 +284,6 @@
             line-height: 1.6;
         }
 
-        /* Chart Animation */
         .chart-container {
             margin-top: 30px;
             height: 100px;
@@ -279,7 +298,6 @@
             border-radius: 3px;
             animation: growUp 2s ease-out infinite alternate;
         }
-
         .chart-bar:nth-child(1) { height: 60%; animation-delay: 0s; }
         .chart-bar:nth-child(2) { height: 80%; animation-delay: 0.2s; }
         .chart-bar:nth-child(3) { height: 40%; animation-delay: 0.4s; }
@@ -294,7 +312,7 @@
         /* Footer */
         footer {
             background: rgba(10, 10, 10, 0.9);
-            padding: 40px 0;
+            padding: 60px 0 40px;
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -303,7 +321,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            text-align: left;
         }
 
         .footer-section h3 {
@@ -320,29 +339,22 @@
         .footer-section a:hover {
             color: #00ff88;
         }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.2rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .process-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
         }
+
+        .social-links img {
+            object-fit: cover;
+            border-radius: 25%;
+            transition: transform 0.3s;
+        }
+        .social-links img:hover {
+            transform: scale(1.1);
+        }
+
 
         /* Particles Background */
         .particles {
@@ -380,6 +392,86 @@
             opacity: 1;
             transform: translateY(0);
         }
+        
+        /* ------------------------- */
+        /* --- RESPONSIVE DESIGN --- */
+        /* ------------------------- */
+        @media (max-width: 768px) {
+            /* --- Mobile Navigation --- */
+            .hamburger {
+                display: flex; /* Show hamburger on mobile */
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .nav-links {
+                position: fixed;
+                left: -100%; /* Hide off-screen */
+                top: 0;
+                flex-direction: column;
+                justify-content: center;
+                gap: 20px;
+                background: rgba(10, 10, 10, 1);
+                width: 100%;
+                height: 100vh;
+                text-align: center;
+                transition: left 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            }
+
+            .nav-links.active {
+                left: 0; /* Slide in */
+            }
+            
+            .nav-links a {
+                font-size: 1.5rem; /* Make links bigger for mobile */
+            }
+            
+            /* --- Layout and Font Adjustments --- */
+            .section {
+                 padding: 80px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .process-grid,
+            .services-grid,
+            .footer-content {
+                grid-template-columns: 1fr; /* Stack grids into a single column */
+            }
+            
+            .service-card {
+                padding: 30px;
+            }
+            
+            .footer-content {
+                text-align: center;
+            }
+
+            .footer-section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -390,23 +482,29 @@
             <div class="logo">ALWAY.AI</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#process">Ai</a></li>
+                <li><a href="#process">AI</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <div class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
         </nav>
     </header>
 
-    <section class="hero" id="home">
-        <div class="glow-effect"></div>
-        <div class="hero-content">
-            <h1>Driving <span class="highlight">growth</span> with AI.</h1>
-            <p>We're a full-service AI Automation Agency. We turn businesses into AI-driven industry leaders.</p>
-            <a href="#services" class="cta-button">Get Started</a>
-        </div>
-    </section>
+    <main>
+        <section class="hero" id="home">
+            <div class="glow-effect"></div>
+            <div class="hero-content">
+                <h1>Driving <span class="highlight">growth</span> with AI.</h1>
+                <p>We're a full-service AI Automation Agency. We turn businesses into AI-driven industry leaders.</p>
+                <a href="#services" class="cta-button">Get Started</a>
+            </div>
+        </section>
 
-    <section class="process" id="process">
+        <section class="process" id="process">
         <div class="container">
             <h2 class="section-title fade-in">Best Ai</h2>
             <div class="process-grid">
@@ -474,49 +572,39 @@
         </div>
     </section>
 
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="section-title fade-in">Our Services</h2>
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-icon">🤖</div>
-                    <h3>AI Consulting</h3>
-                    <p>Leverage the power of AI to transform your operations. From predictive analytics to custom machine learning models, unlock innovative solutions that drive intelligent business decisions.</p>
-                    <div class="chart-container">
-                        <div class="chart-bar"></div>
-                        <div class="chart-bar"></div>
-                        <div class="chart-bar"></div>
-                        <div class="chart-bar"></div>
-                        <div class="chart-bar"></div>
+
+        <section class="services section" id="services">
+            <div class="container">
+                <h2 class="section-title fade-in">Our Services</h2>
+                <div class="services-grid">
+                    <div class="service-card fade-in">
+                        <div class="service-icon">🤖</div>
+                        <h3>AI Consulting</h3>
+                        <p>Leverage the power of AI to transform your operations. From predictive analytics to custom machine learning models, unlock innovative solutions that drive intelligent business decisions.</p>
+                        <div class="chart-container">
+                            <div class="chart-bar"></div><div class="chart-bar"></div><div class="chart-bar"></div><div class="chart-bar"></div><div class="chart-bar"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">💬</div>
-                    <h3>Software Development</h3>
-                    <p>Design and build robust, scalable software solutions tailored to your business needs. From web to mobile applications, streamline your digital journey with clean, efficient code and user-first experiences.</p>
-                    <div class="chart-container">
-                        <div class="chart-bar"></div>
-                        <div class="chart-bar"></div>
-                        <div class="chart-bar"></div>
-                        <div class="chart-bar"></div>
-                        <div class="chart-bar"></div>
+                    <div class="service-card fade-in">
+                        <div class="service-icon">💬</div>
+                        <h3>Software Development</h3>
+                        <p>Design and build robust, scalable software solutions tailored to your business needs. From web to mobile applications, streamline your digital journey with clean, efficient code and user-first experiences.</p>
+                        <div class="chart-container">
+                            <div class="chart-bar"></div><div class="chart-bar"></div><div class="chart-bar"></div><div class="chart-bar"></div><div class="chart-bar"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">📊</div>
-                    <h3>Digital Marketing</h3>
-                    <p>Boost your online presence through data-driven campaigns, SEO strategies, and engaging content. Reach the right audience at the right time, and grow your brand with measurable digital impact.</p>
-                    <div class="chart-container">
-                        <div class="chart-bar"></div>
-                        <div class="chart-bar"></div>
-                        <div class="chart-bar"></div>
-                        <div class="chart-bar"></div>
-                        <div class="chart-bar"></div>
+                    <div class="service-card fade-in">
+                        <div class="service-icon">📊</div>
+                        <h3>Digital Marketing</h3>
+                        <p>Boost your online presence through data-driven campaigns, SEO strategies, and engaging content. Reach the right audience at the right time, and grow your brand with measurable digital impact.</p>
+                        <div class="chart-container">
+                            <div class="chart-bar"></div><div class="chart-bar"></div><div class="chart-bar"></div><div class="chart-bar"></div><div class="chart-bar"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer id="contact">
         <div class="container">
@@ -524,7 +612,7 @@
                 <div class="footer-section">
                     <h3>Contact Us</h3>
                     <p>Ready to transform your business with AI?</p>
-                    <p>Email: alwai.ai@gmail.com</p>
+                    <p>Email: <a href="mailto:alwai.ai@gmail.com">alwai.ai@gmail.com</a></p>
                 </div>
                 <div class="footer-section">
                     <h3>Services</h3>
@@ -533,12 +621,8 @@
                     <p><a href="#services">AI Consulting</a></p>
                 </div>
                 <div class="footer-section">
-                    <h3>Company</h3>
-                    <p><a href="#">About Us</a></p>
-                    <p><a href="#">Our Team</a></p>
-                    <br>
-                    <br>
-                    <div class="social-links">
+                    <h3>Follow Us</h3>
+                     <div class="social-links">
                         <a href="https://www.instagram.com/alway.ai/" target="_blank">
                             <img src="AI/f.jpeg" alt="Facebook" width="32" height="32" >
                         </a>
@@ -549,6 +633,7 @@
                             <img src="AI/i2.png" alt="Instagram" width="32" height="32" >
                         </a>
                     </div>
+
                 </div>
             </div>
             <p>&copy; 2025 Alway.ai All rights reserved.</p>
@@ -556,86 +641,93 @@
     </footer>
 
     <script>
-        // Particle System
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Scroll Animation
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.fade-in');
-            
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('visible');
-                }
-            });
-        }
-
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Glow Effect Mouse Tracking
-        document.addEventListener('mousemove', (e) => {
-            const glowEffect = document.querySelector('.glow-effect');
-            const x = e.clientX;
-            const y = e.clientY;
-            
-            glowEffect.style.left = (x - 300) + 'px';
-            glowEffect.style.top = (y - 300) + 'px';
-        });
-
-        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
+            // --- Mobile Navigation ---
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+                // Prevent body scroll when menu is open
+                if (navLinks.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Close menu when a link is clicked
+            document.querySelectorAll('.nav-links li a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        hamburger.classList.remove('active');
+                        navLinks.classList.remove('active');
+                        document.body.style.overflow = 'auto'; // Restore scroll
+                    }
+                });
+            });
+
+            // --- Particle System ---
+            function createParticles() {
+                const particlesContainer = document.getElementById('particles');
+                const particleCount = 50;
+                if (!particlesContainer) return;
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 6 + 's';
+                    particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                    particlesContainer.appendChild(particle);
+                }
+            }
+
+            // --- Scroll Animation ---
+            function animateOnScroll() {
+                const elements = document.querySelectorAll('.fade-in');
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+            
+            // --- Glow Effect Mouse Tracking ---
+            document.addEventListener('mousemove', (e) => {
+                const glowEffect = document.querySelector('.glow-effect');
+                if (glowEffect) {
+                    glowEffect.style.left = (e.clientX - 300) + 'px';
+                    glowEffect.style.top = (e.clientY - 300) + 'px';
+                }
+            });
+
+            // --- Dynamic Chart Animation ---
+            setInterval(() => {
+                const chartBars = document.querySelectorAll('.chart-bar');
+                chartBars.forEach(bar => {
+                    const newHeight = Math.random() * 80 + 20;
+                    bar.style.height = newHeight + '%';
+                });
+            }, 3000);
+
+            // --- Header Background on Scroll ---
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.background = 'rgba(10, 10, 10, 0.95)';
+                } else {
+                    header.style.background = 'rgba(10, 10, 10, 0.9)';
+                }
+            });
+
+            // Initialize
             createParticles();
             animateOnScroll();
-        });
-
-        // Scroll Event Listener
-        window.addEventListener('scroll', animateOnScroll);
-
-        // Dynamic Chart Animation
-        setInterval(() => {
-            const chartBars = document.querySelectorAll('.chart-bar');
-            chartBars.forEach(bar => {
-                const newHeight = Math.random() * 80 + 20;
-                bar.style.height = newHeight + '%';
-            });
-        }, 3000);
-
-        // Header Background on Scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(10, 10, 10, 0.95)';
-            } else {
-                header.style.background = 'rgba(10, 10, 10, 0.9)';
-            }
+            window.addEventListener('scroll', animateOnScroll);
         });
     </script>
 </body>
