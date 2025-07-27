@@ -145,17 +145,14 @@
             color: #ffffff;
         }
 
-
-
-   .social-links img {
+        .social-links img {
             object-fit: cover;
             border-radius: 25%;
         }
 
-
-
         .process-grid {
             display: grid;
+            /* Updated to fit 4 columns on larger screens */
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             margin-top: 40px;
@@ -163,12 +160,23 @@
 
         .process-card {
             background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
+            padding: 20px; /* Adjusted padding */
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: transform 0.3s, background 0.3s;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* NEW STYLE FOR THE CARD IMAGE */
+        .process-card .card-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px; /* Rounded corners for the image */
+            margin-bottom: 20px;
         }
 
         .process-card:hover {
@@ -202,8 +210,9 @@
         .process-card p {
             color: #cccccc;
             line-height: 1.6;
+            flex-grow: 1; /* Ensures cards have same height if text length varies */
         }
-
+        
         /* Services Section */
         .services {
             padding: 100px 0;
@@ -374,23 +383,20 @@
     </style>
 </head>
 <body>
-    <!-- Particles Background -->
     <div class="particles" id="particles"></div>
 
-    <!-- Header -->
     <header>
         <nav class="container">
             <div class="logo">ALWAY.AI</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#process">Process</a></li>
+                <li><a href="#process">Ai</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="glow-effect"></div>
         <div class="hero-content">
@@ -400,41 +406,74 @@
         </div>
     </section>
 
-    <!-- Process Section -->
     <section class="process" id="process">
         <div class="container">
-            <h2 class="section-title fade-in">Our Process</h2>
+            <h2 class="section-title fade-in">Best Ai</h2>
             <div class="process-grid">
                 <div class="process-card fade-in">
+                    <img src="AI/chatgpt.webp" alt="Subscription" class="card-image">
                     <div class="process-number">01</div>
-                    <h3>Subscribe</h3>
-                    <p>Choose your AI automation plan and get started with our comprehensive onboarding process.</p>
+                    <h3>GPT-4o (OpenAI)</h3>
+                    <p>OpenAI’s multimodal AI for coding, writing, support, and automation using text, images, and voice.</p>
                 </div>
                 <div class="process-card fade-in">
+                    <img src="AI/gemini.png" alt="Request" class="card-image">
                     <div class="process-number">02</div>
-                    <h3>Request</h3>
-                    <p>Submit your automation requests through our streamlined system and communicate your specific needs.</p>
+                    <h3>Gemini</h3>
+                    <p>Google’s advanced AI for productivity, coding, research, and real-time collaboration across Google Workspace tools.</p>
                 </div>
                 <div class="process-card fade-in">
+                    <img src="AI/perplexity.jpg" alt="Build" class="card-image">
                     <div class="process-number">03</div>
-                    <h3>Build</h3>
-                    <p>Our expert team develops custom AI solutions tailored to your business requirements and goals.</p>
+                    <h3>Perplexity</h3>
+                    <p>AI search assistant offering real-time web results, citations, and answers for research and decision-making.
+
+</p>
                 </div>
                 <div class="process-card fade-in">
+                    <img src="AI/claude.png" alt="Testing" class="card-image">
                     <div class="process-number">04</div>
-                    <h3>Test & Optimize</h3>
-                    <p>We rigorously test and optimize your AI systems to ensure maximum performance and reliability.</p>
+                    <h3>Claude</h3>
+                    <p>Context-aware, ethical AI ideal for deep reasoning, business writing, long documents, and safe interactions.
+
+</p>
                 </div>
                 <div class="process-card fade-in">
+                    <img src="AI/grok.png" alt="Launch" class="card-image">
                     <div class="process-number">05</div>
-                    <h3>Become an Industry Leader</h3>
-                    <p>Launch your AI-powered solutions and dominate your market with cutting-edge automation.</p>
+                    <h3>Grok</h3>
+                    <p>Real-time conversational AI integrated with X, focused on trends, social interactions, and dynamic updates.
+
+</p>
+                </div>
+                <div class="process-card fade-in">
+                    <img src="AI/meta.jpg" alt="Deployment" class="card-image">
+                    <div class="process-number">06</div>
+                    <h3>Meta</h3>
+                    <p>Fast, multilingual chatbot embedded in WhatsApp and Instagram for casual conversations and smart assistance.
+
+</p>
+                </div>
+                <div class="process-card fade-in">
+                    <img src="AI/deepseek.png" alt="Support" class="card-image">
+                    <div class="process-number">07</div>
+                    <h3>Deepseek</h3>
+                    <p>Open-source AI with powerful coding, vision-language models, ideal for developers and enterprise-level automation tasks.
+
+</p>
+                </div>
+                <div class="process-card fade-in">
+                    <img src="AI/copilot.avif" alt="Scaling" class="card-image">
+                    <div class="process-number">08</div>
+                    <h3>Copilot</h3>
+                    <p>Integrated in Word and Excel, automates documents, data tasks, emails, and everyday productivity workflows.
+
+</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
     <section class="services" id="services">
         <div class="container">
             <h2 class="section-title fade-in">Our Services</h2>
@@ -479,7 +518,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer id="contact">
         <div class="container">
             <div class="footer-content">
@@ -487,7 +525,6 @@
                     <h3>Contact Us</h3>
                     <p>Ready to transform your business with AI?</p>
                     <p>Email: alwai.ai@gmail.com</p>
-                   
                 </div>
                 <div class="footer-section">
                     <h3>Services</h3>
@@ -499,21 +536,19 @@
                     <h3>Company</h3>
                     <p><a href="#">About Us</a></p>
                     <p><a href="#">Our Team</a></p>
-                    <!--<p><a href="#">Case Studies</a></p> -->
-<br>
-<br>
-<div class="social-links">
-                    <a href="https://www.instagram.com/alway.ai/" target="_blank">
-                        <img src="restaurent/f.jpeg" alt="Facebook" width="32" height="32" >
-                    </a>
-                    <a href="https://www.instagram.com/alway.ai/" target="_blank">
-                        <img src="restaurent/x.png" alt="X" width="32" height="32" >
-                    </a>
-                    <a href="https://www.instagram.com/alway.ai/" target="_blank">
-                        <img src="restaurent/i2.png" alt="Instagram" width="32" height="32" >
-                    </a>
-                </div>
-
+                    <br>
+                    <br>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/alway.ai/" target="_blank">
+                            <img src="restaurent/f.jpeg" alt="Facebook" width="32" height="32" >
+                        </a>
+                        <a href="https://www.instagram.com/alway.ai/" target="_blank">
+                            <img src="restaurent/x.png" alt="X" width="32" height="32" >
+                        </a>
+                        <a href="https://www.instagram.com/alway.ai/" target="_blank">
+                            <img src="restaurent/i2.png" alt="Instagram" width="32" height="32" >
+                        </a>
+                    </div>
                 </div>
             </div>
             <p>&copy; 2025 Alway.ai All rights reserved.</p>
